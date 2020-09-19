@@ -101,10 +101,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
             Vector3 desiredMove = transform.forward*m_Input.y + transform.right*m_Input.x;
 
             // get a normal for the surface that is being touched to move along it
-            RaycastHit hitInfo;
-            Physics.SphereCast(transform.position, m_CharacterController.radius, Vector3.down, out hitInfo,
-                               m_CharacterController.height/2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
-            desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
+            //RaycastHit hitInfo;
+            //Physics.SphereCast(transform.position, m_CharacterController.radius, Vector3.down, out hitInfo,
+            //                   m_CharacterController.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
+            //desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
 
             m_MoveDir.x = desiredMove.x*speed;
             m_MoveDir.z = desiredMove.z*speed;
@@ -114,13 +114,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 m_MoveDir.y = -m_StickToGroundForce;
 
-                /*if (m_Jump)
+                if (m_Jump)
                 {
                     m_MoveDir.y = m_JumpSpeed;
                     PlayJumpSound();
                     m_Jump = false;
                     m_Jumping = true;
-                }*/
+                }
             }
             else
             {
@@ -195,8 +195,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
             else
             {
-                newCameraPosition = m_Camera.transform.localPosition;
-                newCameraPosition.y = m_OriginalCameraPosition.y - m_JumpBob.Offset();
+                Vector3 target = m_Camera.transform.localPosition; // Позиция стремления
+                target.y = m_OriginalCameraPosition.y - m_JumpBob.Offset();
+
+                newCameraPosition = Vector3.MoveTowards(m_Camera.transform.localPosition, target, Time.fixedDeltaTime*0.5f);
             }
             m_Camera.transform.localPosition = newCameraPosition;
         }
