@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Breakable Windows\Scripts\BreakableWindow.cs" />
     <Compile Include="Assets\ButtonScript.cs" />
     <Compile Include="Assets\CloseTrigger.cs" />
     <Compile Include="Assets\DoorScript.cs" />

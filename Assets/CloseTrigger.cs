@@ -4,18 +4,7 @@ using UnityEngine;
 
 public class CloseTrigger : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    //когда игрок входит в комнату
     private void OnTriggerEnter(Collider other)
     {
         //сменить комнаты при задевании входного триггера
