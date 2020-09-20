@@ -63,8 +63,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AngledScript.cs" />
-    <Compile Include="Assets\CopyRoomScript.cs" />
+    <Compile Include="Assets\ButtonScript.cs" />
+    <Compile Include="Assets\CloseTrigger.cs" />
+    <Compile Include="Assets\DoorScript.cs" />
     <Compile Include="Assets\LightCycler.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\MenuSceneLoader.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\PauseMenu.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Assets\SampleScenes\Scripts\ParticleSceneControls.cs" />
     <Compile Include="Assets\SampleScenes\Scripts\PlaceTargetWithMouse.cs" />
     <Compile Include="Assets\SampleScenes\Scripts\SlowMoButton.cs" />
+    <Compile Include="Assets\TeleportRoomScript.cs" />
     <None Include="Assets\SampleScenes\Shaders\Skybox-Procedural.shader" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Acer/Desktop/room_demo/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
