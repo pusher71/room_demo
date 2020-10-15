@@ -64,10 +64,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Breakable Windows\Scripts\BreakableWindow.cs" />
-    <Compile Include="Assets\ButtonScript.cs" />
-    <Compile Include="Assets\CloseTrigger.cs" />
-    <Compile Include="Assets\DoorScript.cs" />
-    <Compile Include="Assets\LightCycler.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\MenuSceneLoader.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\SceneAndURLLoader.cs" />
@@ -76,7 +72,15 @@
     <Compile Include="Assets\SampleScenes\Scripts\ParticleSceneControls.cs" />
     <Compile Include="Assets\SampleScenes\Scripts\PlaceTargetWithMouse.cs" />
     <Compile Include="Assets\SampleScenes\Scripts\SlowMoButton.cs" />
-    <Compile Include="Assets\TeleportRoomScript.cs" />
+    <Compile Include="Assets\Scripts\ButtonScript.cs" />
+    <Compile Include="Assets\Scripts\CloseTrigger.cs" />
+    <Compile Include="Assets\Scripts\DoorScript.cs" />
+    <Compile Include="Assets\Scripts\FogController.cs" />
+    <Compile Include="Assets\Scripts\LightCycler.cs" />
+    <Compile Include="Assets\Scripts\SceneToggler.cs" />
+    <Compile Include="Assets\Scripts\SceneTrigger.cs" />
+    <Compile Include="Assets\Scripts\TeleportRoomScript.cs" />
+    <None Include="Assets\Shaders\ShadowFromVoid.shader" />
     <None Include="Assets\SampleScenes\Shaders\Skybox-Procedural.shader" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Acer/Desktop/room_demo/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>

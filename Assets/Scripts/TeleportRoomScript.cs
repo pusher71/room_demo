@@ -73,10 +73,13 @@ public class TeleportRoomScript : MonoBehaviour
         neighbor.transform.position += offset;
 
         //сбросить её
-        neighbor.doorFrontScript.updateBorders(offset); //обновление границ передней двери
-        neighbor.doorFrontScript.closeDoor(); //закрытие передней двери
-        neighbor.doorBackScript.updateBorders(offset); //обновление границ задней двери
-        neighbor.doorBackScript.closeDoor(); //закрытие задней двери
-        neighbor.closeTriggerActivated = true; //активация закрывающего триггера
+        neighbor.updateRoom(offset);
+    }
+
+    public void updateRoom(Vector3 offset)
+    {
+        doorFrontScript.updateBorders(offset); //обновление границ передней двери
+        doorBackScript.updateBorders(offset); //обновление границ задней двери
+        closeTriggerActivated = true; //активация закрывающего триггера
     }
 }
