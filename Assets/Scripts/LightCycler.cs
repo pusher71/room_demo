@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class LightCycler : MonoBehaviour
 {
-    public float amplitude; //амплитуда движения света
+    public bool startOpposite; //начать движение в противоположную сторону
+    public Vector3 amplitude; //амплитуда движения света
     [Range(0f, 10f)] public float speed; //скорость движения света
-    private float startZ; //изначальная координата света по Z
+    private Vector3 start; //изначальная позиция света по
     private Vector3 target; //целевая позиция, к которой двигается свет
     // Start is called before the first frame update
     void Start()
     {
-        target = transform.position;
-        startZ = target.z;
-        target.z += amplitude;
+        start = transform.position;
+        target = start;
+        if (startOpposite) target -= amplitude;
+        else target += amplitude;
     }
 
     // Update is called once per frame
@@ -24,6 +26,6 @@ public class LightCycler : MonoBehaviour
 
         //проверка на достижение света своей цели
         if (transform.position == target)
-            target.z -= (transform.position.z - startZ) * 2;
+            target -= (target - start) * 2;
     }
 }
