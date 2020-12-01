@@ -63,7 +63,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Breakable Windows\Scripts\BreakableWindow.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\MenuSceneLoader.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\SceneAndURLLoader.cs" />
@@ -77,9 +76,11 @@
     <Compile Include="Assets\Scripts\DoorScript.cs" />
     <Compile Include="Assets\Scripts\FogController.cs" />
     <Compile Include="Assets\Scripts\LightCycler.cs" />
+    <Compile Include="Assets\Scripts\MultilevelConverter.cs" />
     <Compile Include="Assets\Scripts\SceneToggler.cs" />
     <Compile Include="Assets\Scripts\SceneTrigger.cs" />
     <Compile Include="Assets\Scripts\TeleportRoomScript.cs" />
+    <Compile Include="Assets\Scripts\UVConverter.cs" />
     <None Include="Assets\Shaders\ShadowFromVoid.shader" />
     <None Include="Assets\SampleScenes\Shaders\Skybox-Procedural.shader" />
     <Reference Include="Unity.TextMeshPro.Editor">
@@ -297,6 +298,9 @@
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.15f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
+    </Reference>
+    <Reference Include="multilevel_library">
+      <HintPath>C:/Users/Acer/Desktop/room_demo/Assets/Scripts/multilevel_library.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
       <HintPath>C:/Users/Acer/Desktop/room_demo/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>

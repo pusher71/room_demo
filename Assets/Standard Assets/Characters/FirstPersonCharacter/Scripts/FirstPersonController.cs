@@ -55,7 +55,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_NextStep = m_StepCycle / 2f;
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
-            m_MouseLook.Init(transform, m_Camera.transform);
+            //m_MouseLook.Init(transform, m_Camera.transform);
         }
 
 
@@ -102,10 +102,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
             Vector3 desiredMove = transform.forward * m_Input.y + transform.right * m_Input.x;
 
             // get a normal for the surface that is being touched to move along it
-            RaycastHit hitInfo;
-            Physics.SphereCast(transform.position, m_CharacterController.radius, Vector3.down, out hitInfo,
-                               m_CharacterController.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
-            desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
+            //RaycastHit hitInfo;
+            //Physics.SphereCast(transform.position, m_CharacterController.radius, Vector3.down, out hitInfo,
+            //                   m_CharacterController.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
+            //desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
 
             m_MoveDir.x = desiredMove.x * speed;
             m_MoveDir.z = desiredMove.z * speed;
@@ -265,7 +265,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             Vector3 eulerRot = rot.eulerAngles;
             float delta = Mathf.DeltaAngle(transform.eulerAngles.y, eulerRot.y);
             transform.eulerAngles += Vector3.up * delta;
-            m_Camera.transform.eulerAngles += Vector3.up * delta;
+            //m_Camera.transform.eulerAngles += Vector3.up * delta;
             m_MoveDir = toPortal.TransformVector(fromPortal.InverseTransformVector(m_MoveDir));
             Physics.SyncTransforms();
         }
