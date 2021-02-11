@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using multilevel_library;
 using UnityEditor;
 
@@ -26,12 +27,12 @@ public class CustomInspector : Editor
 public class MultilevelConverter : MonoBehaviour
 {
     public MultilevelMaze maze; //многоэтажный лабиринт
-    public Material floorMaterial; //материал пола
-    public Material wallMaterial; //материал стен
+    public Material[] floorMaterial = new Material[1]; //материалы полов
+    public Material[] wallMaterial = new Material[1]; //материалы стен
     public GameObject stairs; //ступеньки
     public string fileName; //имя файла
-    public Vector3 gridScale; //размер сетки
-    public float blockDepth; //толщина блока
+    public Vector3 gridScale = new Vector3(3, 3, 3); //размер сетки
+    public float blockDepth = 1; //толщина блока
     private Vector3 passageSize; //ширина прохода
 
     public static Vector3 elementwiseMultiply(Vector3 v1, Vector3 v2)
@@ -42,9 +43,10 @@ public class MultilevelConverter : MonoBehaviour
     //открыть лабиринт из файла
     public void open()
     {
-        using (FileStream fs = new FileStream(fileName, FileMode.Open))
-        using (BinaryReader sr = new BinaryReader(fs))
-            maze = new MultilevelMaze(sr);
+        FileStream fs = File.Open("Assets/" + fileName, FileMode.Open);
+        BinaryFormatter bf = new BinaryFormatter();
+        maze = (MultilevelMaze)bf.Deserialize(fs);
+        fs.Close();
     }
 
     //построить помещение
@@ -64,13 +66,13 @@ public class MultilevelConverter : MonoBehaviour
                 {
                     Place position = new Place(x, y);
                     int item = current.getItem(position);
-                    if (item == 1)
+                    if (item == Utils.indexWall)
                         //поставить блок
                         brick(position, current, i);
-                    else if (item >= 20 && item <= 23)
+                    else if (Utils.isStairs(item))
                     {
                         //поставить лестницу
-                        Direction dir = Direction.fromNumber(item - 20);
+                        Direction dir = Direction.fromNumber(item - Utils.indexStairs);
                         Place center = position.shiftNew(dir); //центр размещения ступенек
                         GameObject st = Instantiate(stairs, transform);
                         st.transform.localPosition = elementwiseMultiply(new Vector3(center.x, i, -center.y), gridScale);
@@ -100,7 +102,8 @@ public class MultilevelConverter : MonoBehaviour
         wall.transform.parent = transform;
         wall.transform.localPosition = middle;
         wall.transform.localScale = scale;
-        wall.GetComponent<Renderer>().material = position.y % 2 == 0 ? floorMaterial : wallMaterial;
+        wall.GetComponent<Renderer>().material =
+            position.y % 2 == 0 ? floorMaterial[(int)position.y / 2 % floorMaterial.Length] : wallMaterial[(int)position.y / 2 % wallMaterial.Length];
         wall.AddComponent<UVConverter>();
     }
 
@@ -117,14 +120,14 @@ public class MultilevelConverter : MonoBehaviour
         //обозначить блок на карте (чтобы он снова не поставился на это же место)
         for (int y = 0; y < lengthY; y++)
             for (int x = 0; x < lengthX; x++)
-                floor.setItem(position.x + x, position.y + y, 0);
+                floor.setItem(position.x + x, position.y + y, Utils.indexAir);
     }
 
     //эти 2 функции используются для расстановки блоков
     private int sideLength(Place position, Floor floor)
     {
         int length = 0;
-        while (position.y <= maze.height * 2 && floor.getItem(position) == 1)
+        while (position.y <= maze.height * 2 && floor.getItem(position) == Utils.indexWall)
         {
             position.shift(Direction.down);
             length++;

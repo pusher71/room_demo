@@ -36,25 +36,34 @@ public class UVConverter : MonoBehaviour
         new Vector3(0, -1, -1)
     };
 
+    public static Vector3 elementwiseMultiply(Vector3 v1, Vector3 v2)
+    {
+        return new Vector3(v1.x * v2.x, v1.y * v2.y, v1.z * v2.z);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        Mesh mesh = GetComponent<MeshFilter>().mesh;
-        Vector2[] uvs = mesh.uv;
-        int size = GetComponent<Renderer>().material.mainTexture.width;
-        for (int i = 0; i < 24; i++)
+        Texture tex = GetComponent<Renderer>().material.mainTexture;
+        if (tex != null) //есть ли вообще материал
         {
-            Vector3 offset = MultilevelConverter.elementwiseMultiply(
-                (transform.position + MultilevelConverter.elementwiseMultiply(
-                    transform.localScale, scaleParameter[i]) / 2) * pixelsPerUnit / size - Vector3.one / 2, -scaleParameter[i]) * size / pixelsPerUnit;
-            if (indexX.Contains(i))
-                uvs[i] = new Vector2(uvs[i].x * transform.localScale.z + offset.z, uvs[i].y * transform.localScale.y + offset.y) * pixelsPerUnit / size;
-            else if (indexY.Contains(i))
-                uvs[i] = new Vector2(uvs[i].x * transform.localScale.x + offset.x, uvs[i].y * transform.localScale.z + offset.z) * pixelsPerUnit / size;
-            else
-                uvs[i] = new Vector2(uvs[i].x * transform.localScale.x + offset.x, uvs[i].y * transform.localScale.y + offset.y) * pixelsPerUnit / size;
-        }
+            Mesh mesh = GetComponent<MeshFilter>().mesh;
+            Vector2[] uvs = mesh.uv;
+            int size = tex.width;
+            if (size > 0)
+                for (int i = 0; i < 24; i++)
+                {
+                    Vector3 offset = elementwiseMultiply((transform.position + elementwiseMultiply(
+                        transform.localScale, scaleParameter[i]) / 2) * pixelsPerUnit / size - Vector3.one / 2, -scaleParameter[i]) * size / pixelsPerUnit;
+                    if (indexX.Contains(i))
+                        uvs[i] = new Vector2(uvs[i].x * transform.localScale.z + offset.z, uvs[i].y * transform.localScale.y + offset.y) * pixelsPerUnit / size;
+                    else if (indexY.Contains(i))
+                        uvs[i] = new Vector2(uvs[i].x * transform.localScale.x + offset.x, uvs[i].y * transform.localScale.z + offset.z) * pixelsPerUnit / size;
+                    else
+                        uvs[i] = new Vector2(uvs[i].x * transform.localScale.x + offset.x, uvs[i].y * transform.localScale.y + offset.y) * pixelsPerUnit / size;
+                }
 
-        mesh.uv = uvs;
+            mesh.uv = uvs;
+        }
     }
 }
