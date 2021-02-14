@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4909452480394771949}
   - component: {fileID: 7811802450196960721}
   - component: {fileID: 5995717196021163417}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: 01_low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,8 +86,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7442302259883423337}
-  - component: {fileID: 2387037831369091597}
   - component: {fileID: 3054442563423356266}
+  - component: {fileID: 8388441419925845686}
   m_Layer: 0
   m_Name: DoorOrigin
   m_TagString: Untagged
@@ -110,25 +110,6 @@ Transform:
   m_Father: {fileID: 4820851769216218190}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &2387037831369091597
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2475921166027857246}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: aeff416f58d101c4f9ad7ea5f9ccb855, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!65 &3054442563423356266
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -140,8 +121,23 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 2, z: 0.8}
+  m_Size: {x: 0.1, y: 1.9, z: 0.8}
   m_Center: {x: 0, y: 0, z: 0.4}
+--- !u!114 &8388441419925845686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2475921166027857246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa86fa8f892770d4c9248f9d14238028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fc: {fileID: 0}
+  speedNormal: 1
+  speedSlow: 0.2
 --- !u!1 &4820851769216444526
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,9 +147,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4820851769216218190}
-  - component: {fileID: 4820851769206954926}
-  - component: {fileID: 4331983682352855495}
-  - component: {fileID: 108924794163525782}
   m_Layer: 0
   m_Name: DoorV6
   m_TagString: Untagged
@@ -177,54 +170,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &4820851769206954926
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4820851769216444526}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 5518466ac73c3b94e8f1765c6c455927, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!65 &4331983682352855495
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4820851769216444526}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0.4, y: 1, z: 0}
---- !u!114 &108924794163525782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4820851769216444526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa86fa8f892770d4c9248f9d14238028, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fc: {fileID: 0}
-  doorOrigin: {fileID: 2475921166027857246}
-  speedNormal: 1
-  speedSlow: 0.2
 --- !u!1 &7546480463726356068
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,7 +196,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7546480463726356068}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5757219, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4820851769216218190}

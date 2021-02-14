@@ -77,7 +77,6 @@
     <Compile Include="Assets\Scripts\DoorScript.cs" />
     <Compile Include="Assets\Scripts\DoorWooden.cs" />
     <Compile Include="Assets\Scripts\EnemyScript.cs" />
-    <Compile Include="Assets\Scripts\FogController.cs" />
     <Compile Include="Assets\Scripts\LightCycler.cs" />
     <Compile Include="Assets\Scripts\MultilevelConverter.cs" />
     <Compile Include="Assets\Scripts\NavigationMesh.cs" />

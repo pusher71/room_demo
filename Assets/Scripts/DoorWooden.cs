@@ -5,48 +5,46 @@ using UnityEngine;
 public class DoorWooden : MonoBehaviour
 {
     public UnityStandardAssets.Characters.FirstPerson.FirstPersonController fc; //игровой управленец
-    public GameObject doorOrigin; //дверные петли
-    public float speedNormal; //обычная скорость
-    public float speedSlow; //медленная скорость
+    //public float speedNormal; //обычная скорость
+    //public float speedSlow; //медленная скорость
 
     private bool over = false; //прицел на двери
     private bool opened = false; //открыта ли?
-    private float velocity = 0; //текущая скорость движения
     private float proc = 0; //процесс открытия
+    private float baseProc = 0; //относительное открытие
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private bool isSlow; //режим медленного перетаскивания
+    private float rootPos; //позиция нажатой ПКМ
 
     // Update is called once per frame
     void Update()
     {
         //привести дверь в движение
-        proc = Mathf.Clamp(proc + velocity, 0, 90);
-        doorOrigin.transform.localRotation = Quaternion.Euler(0, proc, 0);
+        transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, proc, 0), Time.deltaTime);
+        opened = proc > 0;
 
         if (over) //мышка захвачена?
         {
             if (Input.GetMouseButtonDown(0)) //обычное открытие
             {
-                if (!opened) velocity = speedNormal;
-                else velocity = -speedNormal;
-                opened = !opened;
+                proc = opened ? 0 : 90;
+                baseProc = proc;
             }
             if (Input.GetMouseButtonDown(1)) //медленное открытие
             {
-                fc.enabled = false;
-                opened = true;
-                velocity = speedSlow;
+                rootPos = Camera.main.transform.rotation.eulerAngles.x;
+                isSlow = true;
             }
-            if (Input.GetMouseButtonUp(1)) //медленное прикрытие
-            {
-                fc.enabled = true;
-                opened = false;
-                velocity = -speedSlow;
-            }
+        }
+
+        //движение фазы
+        if (isSlow)
+            proc = Mathf.Clamp(baseProc + Camera.main.transform.rotation.eulerAngles.x - rootPos, 0, 90);
+
+        if (Input.GetMouseButtonUp(1)) //медленное прикрытие
+        {
+            isSlow = false;
+            baseProc = proc;
         }
     }
 
